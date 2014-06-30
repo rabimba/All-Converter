@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html ng-app="conversionApp">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/headers.css">
+<link rel="stylesheet" href="css/input_areas.css">
+<link rel="stylesheet" href="css/util.css">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/cross_browser.css">
+<link rel="stylesheet" href="css/drawer.css">
+<link rel="stylesheet" href="css/style.css">
+<title>All Converter</title>
+
+</head>
+<body ng-controller="ConversionController">
+
+<section id="index" data-position="current">
+  <section data-type="sidebar">
+    <header>
+      <menu type="toolbar">
+        <a href="#">Done</a>
+      </menu>
+      <h1>Units</h1>
+    </header>
+    <nav>
+      <h2>Length</h2>
+      <ul>
+        <li>
+          <a href="#" ng-click="setKmToMile()">KM to Mile</a>
+        </li>
+        <li>
+          <a href="#" ng-click="setMileToKm()">Mile to KM</a>
+        </li>
+      </ul>
+      <h2>Temperature</h2>
+      <ul>
+        <li>
+          <a href="#" ng-click="setCelsiusToFahrenheit()">Celsius to Fanrenheit</a>
+        </li>
+        <li>
+          <a href="#" ng-click="setCelsiusToKelvin()">Celsius to Kelvin</a>
+        </li>
+        <li>
+          <a href="#" ng-click="setFahrenheitToCelsius()">Fanrenheit to Celsius</a>
+        </li>
+         <li>
+          <a href="#" ng-click="setFahrenheitToKelvin()">Fanrenheit to Kelvin</a>
+        </li>
+        <li>
+          <a href="#" ng-click="setKelvinToCelsius()">Kelvin to Celsius</a>
+        </li>
+        <li>
+          <a href="#" ng-click="setKelvinToFahrenheit()">Kelvin to Fanrenheit</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+
+  <section id="drawer" role="region">
+    <header class="fixed">
+      <a href="#">
+        <span class="icon icon-menu">hide sidebar</span>
+      </a>
+      <a href="#drawer">
+        <span class="icon icon-menu">show sidebar</span>
+      </a>
+      <h1>Unit Converter</h1>
+    </header>
+
+    <!-- KM to Mile -->
+    <article ng-show="isKmToMile" class="content scrollable header">
+      <form>
+        <section>
+          <input autofocus="" autocomplete="off" ng-model="km" 
+           type="number" min="0" placeholder="KM" ng-change="kmToMile()">
+        </section>
+        <section>
+          <span class="label">MILE</span>
+          <div class="result">{{mile | number:2}}</div>
+        </section>
+      </form>
+    </article>
+
+    <!-- Mile to KM -->
+    <article ng-show="isMileToKm" class="content scrollable header">
+      <form>
+        <section>
+          <input autofocus="" autocomplete="off" ng-model="mile" 
+           type="number" min="0" placeholder="Mile" ng-change="mileToKm()">
+        </section>
+        <section>
+          <span class="label">KM</span>
+          <div class="result">{{km | number:2}}</div>
+        </section>
+      </form>
+    </article>
+
+    <!-- Celsius to Fahrenheit -->
+    <article ng-show="isCelsiusToFahrenheit" class="content scrollable header">
+      <form>
+        <section>
+          <input autofocus="" autocomplete="off" ng-model="celsius" 
+           type="number" placeholder="Celsius" ng-change="celsiusToFahrenheit()">
+        </section>
+        <section>
+          <span class="label">Fanrenhet</span>
+          <div class="result">{{fahrenheit | number:2}}</div>
+        </section>
+      </form>
+    </article>
+
+    <!-- Celcius to Kelvin -->
+    <article ng-show="isCelsiusToKelvin" class="content scrollable header">
+      <form>
+        <section>
+          <input autofocus="" autocomplete="off" ng-model="celsius" 
+           type="number" placeholder="Celsius" ng-change="celsiusToKelvin()">
+        </section>
+        <section>
+          <span class="label">Kelvin</span>
+          <div class="result">{{kelvin | number:2}}</div>
+        </section>
+      </form>
+    </article>
+
+    <!-- Fahrenheitnheit to Celsius -->
+    <article ng-show="isFahrenheitToCelsius" class="content scrollable header">
+      <form>
+        <section>
+          <input autofocus="" autocomplete="off" ng-model="fahrenheit" 
+           type="number" placeholder="Fahrenheitheint" ng-change="fahrenheitToCelsius()">
+        </section>
+        <section>
+          <span class="label">Celsius</span>
+          <div class="result">{{celsius | number:2}}</div>
+        </section>
+      </form>
+    </article>
+
+    <!-- Fahrenheitnheit to Kelvin -->
+    <article ng-show="isFahrenheitToKelvin" class="content scrollable header">
+      <form>
+        <section>
+          <input autofocus="" autocomplete="off" ng-model="fahrenheit" 
+           type="number" placeholder="Fahrenheitheint" ng-change="fahrenheitToKelvin()">
+        </section>
+        <section>
+          <span class="label">Kelvin</span>
+          <div class="result">{{kelvin | number:2}}</div>
+        </section>
+      </form>
+    </article>
+
+    <!-- Kelvin to Celsius -->
+    <article ng-show="isKelvinToCelsius" class="content scrollable header">
+      <form>
+        <section>
+          <input autofocus="" autocomplete="off" ng-model="kelvin" 
+           type="number" placeholder="Kelvin" ng-change="kelvinToCelsius()">
+        </section>
+        <section>
+          <span class="label">Celsius</span>
+          <div class="result">{{celsius | number:2}}</div>
+        </section>
+      </form>
+    </article>
+
+    <!-- Kelvin to Celsius -->
+    <article ng-show="isKelvinToFahrenheit" class="content scrollable header">
+      <form>
+        <section>
+          <input autofocus="" autocomplete="off" ng-model="kelvin" 
+           type="number" placeholder="Kelvin" ng-change="kelvinToFahrenheit()">
+        </section>
+        <section>
+          <span class="label">Fahrenheit</span>
+          <div class="result">{{fahrenheit | number:2}}</div>
+        </section>
+      </form>
+    </article>    
+
+  </section>
+</section>
+
+<script src="js/vendor/angular.min.js"></script>
+<script src="js/conversionApp.js"></script>
+<script src="js/controllers/ConversionController.js"></script>
+
+</body>
+</html>

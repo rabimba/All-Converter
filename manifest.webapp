@@ -1,0 +1,15 @@
+{
+  "version": "1",
+  "name": "All Converter",
+  "launch_path": "/index.html",
+  "description": "Convert most of the Units to and from another",
+  "icons": {
+    "128": "/images/logo128.png"
+  },
+  "developer": {
+    "name": "Rabimba Karanjai",
+    "url": "http://www.rabimba.com"
+  },
+  "installs_allowed_from": ["*"],
+  "default_locale": "en"
+}
